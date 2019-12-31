@@ -30,7 +30,6 @@
 
 
 Special thanks to:  
-**Telegrams**:  
-`icYFTL - @icYFTL`  
-`lazarev_t - @lazarev_t`  
+`icYFTL`
+`lazarev_t`
 `devzZze`
