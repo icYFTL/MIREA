@@ -181,28 +181,61 @@ void Sorts::merge_support(vector<int>& mas, int l, int m, int r)
 		k++;
 	}
 }
+vector<int> mergeArrays(vector<int>& arr1, vector<int>& arr2)
+{
+	int i = 0, j = 0, k = 0;
+	vector<int> arr3(arr1.size() + arr2.size());
+	while (i < arr1.size() && j < arr2.size())
+	{
+		if (arr1[i] < arr2[j])
+			arr3[k++] = arr1[i++];
+		else
+			arr3[k++] = arr2[j++];
+	}
 
+	while (i < arr1.size())
+		arr3[k++] = arr1[i++];
+
+	while (j < arr2.size())
+		arr3[k++] = arr2[j++];
+	sort(arr3.begin(), arr3.end());
+	return arr3;
+}
 vector<int> Sorts::natural_merge_sort() {
+	this->start_clock = clock();
+	vector<int> _temp = this->input;
 	vector<vector<int>> _mas_of_mases;
 	int _counter = 0;
-	if (this->input.size() > 10000)
-		for (size_t i = 0; i < this->input.size(); i += 10000) {
+	if (_temp.size() >= 10)
+	for (size_t i = 0; i < _temp.size(); i += _temp.size() / 10) {
+		_mas_of_mases.push_back(vector<int>());
+		for (size_t j = 0; j < _temp.size() / 10; ++j)
+			_mas_of_mases[_counter].push_back(_temp[j]);
+		_counter++;
+	}
+	else
+		for (size_t i = 0; i < _temp.size(); i++) {
 			_mas_of_mases.push_back(vector<int>());
-			for (size_t j = 0; j < 10000; ++j)
-				_mas_of_mases[_counter].push_back(this->input[j]);
+			_mas_of_mases[_counter].push_back(_temp[i]);
 			_counter++;
 		}
-	else
-		return merge();
-		
-	for (vector<int>& i : _mas_of_mases) {
-		std::sort(i.begin(), i.end());
-		for (int j : i)
-			std::cout << j << " ";
-		std::cout << std::endl;
 
+	
+	while (_mas_of_mases.size() != 1) {
+		for (size_t i = 0; i < _mas_of_mases.size() - 1; i += 2) {
+			_mas_of_mases[i] = mergeArrays(_mas_of_mases[i], _mas_of_mases[i + 1]);
+			_mas_of_mases[i + 1].clear();
+		}
+		for (size_t i = 0; i < _mas_of_mases.size(); ++i)
+			if (_mas_of_mases[i].size() == 0)
+				_mas_of_mases.erase(_mas_of_mases.begin() + i);
+			
+			
 	}
+	this->estimated_time = (clock() - start_clock) / 1000.0;
+	return _mas_of_mases[0];
 	
 	
 
 }
+

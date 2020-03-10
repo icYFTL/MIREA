@@ -65,7 +65,8 @@ void Menu::init(vector<int> mas) {
 		show_array(_temp, "# Merge sort #");
 		break;
 	case '7':
-		//_sorts.natural_merge_sort();
+		_temp = _sorts.natural_merge_sort();
+		show_array(_temp, "# Natural merge sort #");
 		break;
 		
 	}

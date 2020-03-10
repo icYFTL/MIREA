@@ -18,6 +18,7 @@ private:
     
     void merge_support(vector<int> &mas, int l, int m, int r);
     void merge_sort(vector<int>& mas, int l, int r);
+    vector<int> merge_arrays(vector<int>& arr1, vector<int>& arr2);
 
 public:
     double estimated_time;

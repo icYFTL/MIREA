@@ -1,5 +1,0 @@
-C:/Users/icYFTL/source/repos/SManager/out/build/x64-Debug/CMakeFiles/edit_cache.dir
-C:/Users/icYFTL/source/repos/SManager/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
-C:/Users/icYFTL/source/repos/SManager/out/build/x64-Debug/SManager/CMakeFiles/SManager.dir
-C:/Users/icYFTL/source/repos/SManager/out/build/x64-Debug/SManager/CMakeFiles/edit_cache.dir
-C:/Users/icYFTL/source/repos/SManager/out/build/x64-Debug/SManager/CMakeFiles/rebuild_cache.dir

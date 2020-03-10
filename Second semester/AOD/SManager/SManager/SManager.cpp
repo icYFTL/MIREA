@@ -6,6 +6,7 @@
 using namespace std;
 
 int main() {
+	SetConsoleTitle("SManager");
 #ifdef _DEBUG
 	cout << "DEBUG MODE ACTIVATED.\nSorts will work slowly.\nWanna continue?(y/n)";
 	char _ans;
