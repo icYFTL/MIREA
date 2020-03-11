@@ -1,4 +1,4 @@
-﻿// SManager.cpp : Defines the entry point for the application.
+// SManager.cpp : Defines the entry point for the application.
 //
 
 #include "SManager.h"
@@ -6,7 +6,9 @@
 using namespace std;
 
 int main() {
-	SetConsoleTitle("SManager");
+#ifdef _WIN32 || _WIN64
+    SetConsoleTitle("SManager");
+#endif
 #ifdef _DEBUG
 	cout << "DEBUG MODE ACTIVATED.\nSorts will work slowly.\nWanna continue?(y/n)";
 	char _ans;

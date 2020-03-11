@@ -204,7 +204,7 @@ vector<int> mergeArrays(vector<int>& arr1, vector<int>& arr2)
 vector<int> Sorts::natural_merge_sort() {
 	this->start_clock = clock();
 	vector<int> _temp = this->input;
-	vector<vector<int>> _mas_of_mases;
+	vector< vector<int> > _mas_of_mases;
 	int _counter = 0;
 	if (_temp.size() >= 10)
 	for (size_t i = 0; i < _temp.size(); i += _temp.size() / 10) {
