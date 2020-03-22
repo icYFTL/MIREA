@@ -19,7 +19,7 @@ SManager
 |Shell|0.0004s|0.001s|0.014s|0.15s|
 |Shaker|0.001s|0.132s|13.118s|1420.72s|
 |Merge|0.001s|0.003s|0.03s|0.262s|
-|Natural merge|0.0001s|0.001s|0.008s|0.083s|
+|Natural merge| - | - | - | - |
 
 Special thanks to:  
 `icYFTL`
