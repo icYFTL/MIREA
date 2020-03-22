@@ -9,7 +9,7 @@ SManager
 | Shell sort           |       ✔       |
 | Shaker sort        |       ✔       |
 | Merge sort          |       ✔       |
-| Natural merge sort           | 	    ✔       |
+| Natural merge sort           | 	    🚫       |
 
 |Name|1000| 10000 | 100000 | 1000000|
 |----|----|-------|--------|--------|
