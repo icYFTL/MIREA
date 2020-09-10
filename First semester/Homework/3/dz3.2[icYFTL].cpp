@@ -1,3 +1,8 @@
+/*
+ * NOTICE: THIS SOLUTION PROBABLY WILL NOT WORK CORRECTLY
+ * NOTICE: U NEED TO DOWNLOAD AND CONNECT BOOST LIBRARY TO THE PROJECT (GOOGLE IT)
+ * */
+
 #define _WIN32_WINNT 0x0A00
 #define BOOST_DATE_TIME_NO_LIB
 #define BOOST_REGEX_NO_LIB
@@ -20,113 +25,99 @@ using namespace std;
 using boost::asio::ip::tcp;
 
 double m, S, n;
+string host = "api.wolframalpha.com";
+string url = url = "/v2/query?input=m+%3D+%28S+*+p%2F100+*+pow%28%281+%2B+p%2F100%29%2C+n%29%29+%2F+%2812+*+%28%28pow%28%281+%2B+p%2F100%29%2C+n%29+-+1%29%29%29+for+m+%3D+" + to_string(m) + "%2C+S+%3D+" + to_string(S) + "%2C+n+%3D+" + to_string(n) + "&appid=" + this->app_id;
+string app_id = "VKQG3T-QE5HK5QU2Y";
+
+string request() {
+
+    try
+    {
+
+        boost::asio::io_service io_service;
 
 
-class Net {
-private:
-	string app_id = "VKQG3T-QE5HK5QU2Y";
-	string url;
-	string host;
+        tcp::resolver resolver(io_service);
+        tcp::resolver::query query(this->host, "http");
+        tcp::resolver::iterator endpoint_iterator = resolver.resolve(query);
 
 
-public:
-	Net(int S, int m, int n) {
-		this->host = "api.wolframalpha.com";
-		this->url = "/v2/query?input=m+%3D+%28S+*+p%2F100+*+pow%28%281+%2B+p%2F100%29%2C+n%29%29+%2F+%2812+*+%28%28pow%28%281+%2B+p%2F100%29%2C+n%29+-+1%29%29%29+for+m+%3D+" + to_string(m) + "%2C+S+%3D+" + to_string(S) + "%2C+n+%3D+" + to_string(n) + "&appid=" + this->app_id;
-	}
-	string request() {
-
-		try
-		{
-
-			boost::asio::io_service io_service;
-
-
-			tcp::resolver resolver(io_service);
-			tcp::resolver::query query(this->host, "http");
-			tcp::resolver::iterator endpoint_iterator = resolver.resolve(query);
-
-
-			tcp::socket socket(io_service);
-			boost::asio::connect(socket, endpoint_iterator);
+        tcp::socket socket(io_service);
+        boost::asio::connect(socket, endpoint_iterator);
 
 
 
 
-			boost::asio::streambuf request;
-			std::ostream request_stream(&request);
-			request_stream << "GET " << this->url << " HTTP/1.0\r\n";
-			request_stream << "Host: " << this->host << "\r\n";
-			request_stream << "Accept: */*\r\n";
-			request_stream << "Connection: close\r\n\r\n";
+        boost::asio::streambuf request;
+        std::ostream request_stream(&request);
+        request_stream << "GET " << this->url << " HTTP/1.0\r\n";
+        request_stream << "Host: " << this->host << "\r\n";
+        request_stream << "Accept: */*\r\n";
+        request_stream << "Connection: close\r\n\r\n";
 
 
-			boost::asio::write(socket, request);
-
-
-
-
-			boost::asio::streambuf response;
-			boost::asio::read_until(socket, response, "\r\n");
-
-
-			std::istream response_stream(&response);
-			std::string http_version;
-			response_stream >> http_version;
-			unsigned int status_code;
-			response_stream >> status_code;
-			std::string status_message;
-			std::getline(response_stream, status_message);
-			if (!response_stream || http_version.substr(0, 5) != "HTTP/")
-			{
-				std::cout << "Invalid response\n";
-				return "None";
-			}
-			if (status_code != 200)
-			{
-				std::cout << "Response returned with status code " << status_code << "\n";
-				return "None";
-			}
-
-
-			boost::asio::read_until(socket, response, "\r\n\r\n");
-
-
-			std::string header;
-			//while (std::getline(response_stream, header) && header != "\r")
-				//std::cout << header << "\n";
-			//std::cout << "\n";
-			stringstream answer;
-
-
-			if (response.size() > 0)
-				answer << &response;
-
-
-			boost::system::error_code error;
-
-			while (boost::asio::read(socket, response,
-				boost::asio::transfer_at_least(1), error))
-				answer << &response;
-
-
-			return answer.str();
-
-			if (error != boost::asio::error::eof)
-				throw boost::system::system_error(error);
-
-		}
-		catch (std::exception& e)
-		{
-			std::cout << "Exception: " << e.what() << "\n";
-		}
-
-		return "None";
-	}
+        boost::asio::write(socket, request);
 
 
 
-};
+
+        boost::asio::streambuf response;
+        boost::asio::read_until(socket, response, "\r\n");
+
+
+        std::istream response_stream(&response);
+        std::string http_version;
+        response_stream >> http_version;
+        unsigned int status_code;
+        response_stream >> status_code;
+        std::string status_message;
+        std::getline(response_stream, status_message);
+        if (!response_stream || http_version.substr(0, 5) != "HTTP/")
+        {
+            std::cout << "Invalid response\n";
+            return "None";
+        }
+        if (status_code != 200)
+        {
+            std::cout << "Response returned with status code " << status_code << "\n";
+            return "None";
+        }
+
+
+        boost::asio::read_until(socket, response, "\r\n\r\n");
+
+
+        std::string header;
+        //while (std::getline(response_stream, header) && header != "\r")
+        //std::cout << header << "\n";
+        //std::cout << "\n";
+        stringstream answer;
+
+
+        if (response.size() > 0)
+            answer << &response;
+
+
+        boost::system::error_code error;
+
+        while (boost::asio::read(socket, response,
+                                 boost::asio::transfer_at_least(1), error))
+            answer << &response;
+
+
+        return answer.str();
+
+        if (error != boost::asio::error::eof)
+            throw boost::system::system_error(error);
+
+    }
+    catch (std::exception& e)
+    {
+        std::cout << "Exception: " << e.what() << "\n";
+    }
+
+    return "None";
+}
 
 void write_it(string ans) {
 	ofstream fout("ans.txt");
@@ -197,8 +188,7 @@ int main()
 		cin >> n;
 		cout << endl;
 	}
-	Net net(S, m, n);
-	string data = get_p(net.request());
+	string data = get_p(request());
 
 	cout << endl << "ANSWER: " << endl << data;
 	write_it(data);

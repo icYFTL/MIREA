@@ -21,5 +21,3 @@ SManager
 |Merge|0.001s|0.003s|0.03s|0.262s|
 |Natural merge| - | - | - | - |
 
-Special thanks to:  
-`icYFTL`

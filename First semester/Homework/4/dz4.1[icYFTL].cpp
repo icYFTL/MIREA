@@ -1,3 +1,6 @@
+// THIS SOLUTION USES OOP. IT'S NOT PROCEDURE PROGRAMMING.
+// USE LAZAREV_T's SOLUTION INSTEAD.
+
 #define FILENAME "task.txt"
 
 #include <iostream>

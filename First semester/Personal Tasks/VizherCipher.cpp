@@ -1,3 +1,5 @@
+// THIS SOLUTION USES OOP. IT'S NOT PROCEDURE PROGRAMMING.
+
 #define CIN_FLUSH if (std::cin.peek()) std::cin.ignore()
 
 #include <iostream>

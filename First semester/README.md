@@ -26,10 +26,9 @@
 | 4.6           |       ✔ [devzZze]       |
 | 4.7           |       ✔ [lazarev_t]     |
 | 4.8           |       ✔ [lazarev_t]      |
-| 4.9           |       ✔       |
+| 4.9           |       ⚠       |
 
 
 Special thanks to:  
-`icYFTL`
 `lazarev_t`
 `devzZze`
