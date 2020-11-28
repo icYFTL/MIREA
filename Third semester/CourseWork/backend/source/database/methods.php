@@ -39,7 +39,7 @@ class Methods
     public function getStudentsByGroup($group_id){
         if (intval($group_id) === 0)
             die('Invalid value passed');
-        $result = $this->conn->query("SELECT name,surname,patronymic FROM students WHERE group_id={$group_id};") or die('Something went wrong');
+        $result = $this->conn->query("SELECT id, name,surname,patronymic FROM students WHERE group_id={$group_id};") or die('Something went wrong');
         $tmp = array();
         while ($_ = $result->fetchArray(SQLITE3_ASSOC) )
             array_push($tmp, $_);

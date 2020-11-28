@@ -12,7 +12,8 @@ export default new Vuex.Store({
         user: {},
         current_module: Home,
         is_menu_opened: false,
-        menu_content: null
+        menu_content: null,
+        api_host: 'https://icyftl.ru/px'
     },
     mutations: {
         change_module(state, new_module) {

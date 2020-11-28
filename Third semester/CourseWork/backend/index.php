@@ -5,7 +5,6 @@ require 'source/database/methods.php';
 
 if (isset($_GET['method'])){
     $methods = new \database\Methods();
-
     switch ($_GET['method']){
         case 'getInstitutesList':
             echo $methods->getInstitutesList();
@@ -22,6 +21,8 @@ if (isset($_GET['method'])){
                 break;
             }
             die('Invalid group_id');
+        default:
+            die('Invalid method');
     }
 }
 else
