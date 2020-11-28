@@ -1,8 +1,0 @@
-version: "3.7"
-services:
-  server:
-    image: px
-    ports:
-    - 8532:8532
-    build: .
-    command: "php index.php -S localhost:8532"

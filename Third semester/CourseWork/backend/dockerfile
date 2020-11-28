@@ -1,3 +1,0 @@
-FROM php:7.4-cli
-COPY . /usr/src/px
-WORKDIR /usr/src/px
